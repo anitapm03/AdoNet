@@ -93,9 +93,7 @@ namespace AdoNet
 
             this.cn.Close();
             this.com.Parameters.Clear();
-
             MessageBox.Show("Modificados: " + modificados);
-
             this.txtOficio.Clear();
             this.txtSalario.Clear();
 
