@@ -93,5 +93,70 @@ namespace AdoNet.Repositories
             return oficios;
         }
 
+        public List<Empleado> GetEmpOficios(string oficio)
+        {
+            string sql = "SELECT * FROM EMP WHERE OFICIO = @of";
+            SqlParameter ofparam = new SqlParameter("@of", oficio);
+            this.com.Parameters.Add(ofparam);
+
+            this.com.CommandType = System.Data.CommandType.Text;
+            this.com.CommandText = sql;
+            this.cn.Open();
+            this.reader = this.com.ExecuteReader();
+
+            List<Empleado> empleados = new List<Empleado>();
+            while (this.reader.Read())
+            {
+                int id = int.Parse(this.reader["EMP_NO"].ToString());
+                string apellido = this.reader["APELLIDO"].ToString();
+                string of = this.reader["OFICIO"].ToString();
+                int dir = int.Parse(this.reader["DIR"].ToString());
+                string fecha = this.reader["FECHA_ALT"].ToString();
+                int salario = int.Parse(this.reader["SALARIO"].ToString());
+                int comision = int.Parse(this.reader["COMISION"].ToString());
+                int deptno = int.Parse(this.reader["DEPT_NO"].ToString());
+
+                Empleado emp = new Empleado();
+                emp.Id = id;
+                emp.Apellido = apellido;
+                emp.Oficio = of;
+                emp.Dir = dir;
+                emp.Fecha = fecha;
+                emp.Salario = salario;
+                emp.Comision = comision;
+                emp.Deptno = deptno;
+
+                empleados.Add(emp);
+            }
+
+            this.reader.Close();
+            this.com.Parameters.Clear();
+            this.cn.Close();
+
+            return empleados;
+        }
+
+        public int AumentarSalario(int aumento, string oficio)
+        {
+            string sql = "UPDATE EMP SET SALARIO = SALARIO + @incremento " +
+                "WHERE OFICIO = @of";
+            SqlParameter incparam = new SqlParameter("@incremento", aumento);
+            this.com.Parameters.Add(incparam);
+            SqlParameter ofparam = new SqlParameter("@of", oficio);
+            this.com.Parameters.Add(ofparam);
+
+            this.com.CommandType = System.Data.CommandType.Text;
+            this.com.CommandText = sql;
+            this.cn.Open();
+
+            int actualizados = this.com.ExecuteNonQuery();
+
+            this.com.Parameters.Clear();
+            this.cn.Close();
+
+            return actualizados;
+
+        }
+
     }
 }

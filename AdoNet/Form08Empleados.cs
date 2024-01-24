@@ -59,7 +59,37 @@ namespace AdoNet
         {
             string oficio = this.lstOficios.SelectedItem.ToString();
 
+            List<Empleado> empleados = this.repo.GetEmpOficios(oficio);
+            this.lstEmpleados.Items.Clear();
 
+            int sumaSalarial = 0;
+            foreach (Empleado emp in empleados)
+            {
+                int sal = int.Parse(emp.Salario.ToString());
+                //int com = int.Parse(emp.Comision.ToString());
+                sumaSalarial += sal;
+
+                this.lstEmpleados.Items.Add(emp.Apellido);
+                this.idsEmpleados.Add(emp.Id);
+            }
+
+            this.lblSuma.Text = sumaSalarial.ToString();
+        }
+
+        private void lstEmpleados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnIncrementar_Click(object sender, EventArgs e)
+        {
+            string oficio = this.lstOficios.SelectedItem.ToString();
+            int incremento = int.Parse(this.txtIncremento.Text);
+
+            int actualizados = this.repo.AumentarSalario(incremento, oficio);
+
+            this.lstOficios_SelectedIndexChanged(sender, e);
+            MessageBox.Show("Se han acutalizado " + actualizados.ToString() + " empleados.");
         }
     }
 }

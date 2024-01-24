@@ -32,6 +32,10 @@
             lstOficios = new ListBox();
             label2 = new Label();
             lstEmpleados = new ListBox();
+            label3 = new Label();
+            txtIncremento = new TextBox();
+            btnIncrementar = new Button();
+            lblSuma = new Label();
             SuspendLayout();
             // 
             // label1
@@ -70,12 +74,52 @@
             lstEmpleados.Name = "lstEmpleados";
             lstEmpleados.Size = new Size(178, 229);
             lstEmpleados.TabIndex = 3;
+            lstEmpleados.SelectedIndexChanged += lstEmpleados_SelectedIndexChanged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(366, 39);
+            label3.Name = "label3";
+            label3.Size = new Size(124, 15);
+            label3.TabIndex = 4;
+            label3.Text = "Incremento de salario:";
+            // 
+            // txtIncremento
+            // 
+            txtIncremento.Location = new Point(366, 57);
+            txtIncremento.Name = "txtIncremento";
+            txtIncremento.Size = new Size(121, 23);
+            txtIncremento.TabIndex = 5;
+            // 
+            // btnIncrementar
+            // 
+            btnIncrementar.Location = new Point(366, 97);
+            btnIncrementar.Name = "btnIncrementar";
+            btnIncrementar.Size = new Size(121, 23);
+            btnIncrementar.TabIndex = 6;
+            btnIncrementar.Text = "Incrementar";
+            btnIncrementar.UseVisualStyleBackColor = true;
+            btnIncrementar.Click += btnIncrementar_Click;
+            // 
+            // lblSuma
+            // 
+            lblSuma.AutoSize = true;
+            lblSuma.Location = new Point(192, 279);
+            lblSuma.Name = "lblSuma";
+            lblSuma.Size = new Size(128, 15);
+            lblSuma.TabIndex = 7;
+            lblSuma.Text = "Suma salarial del oficio";
             // 
             // Form08Empleados
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(539, 347);
+            Controls.Add(lblSuma);
+            Controls.Add(btnIncrementar);
+            Controls.Add(txtIncremento);
+            Controls.Add(label3);
             Controls.Add(lstEmpleados);
             Controls.Add(label2);
             Controls.Add(lstOficios);
@@ -92,5 +136,9 @@
         private ListBox lstOficios;
         private Label label2;
         private ListBox lstEmpleados;
+        private Label label3;
+        private TextBox txtIncremento;
+        private Button btnIncrementar;
+        private Label lblSuma;
     }
 }
