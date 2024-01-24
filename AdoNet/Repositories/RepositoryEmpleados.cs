@@ -158,5 +158,37 @@ namespace AdoNet.Repositories
 
         }
 
+
+        public DatosEmpleadosOficio GetDatosEmpleadosOficio(string oficio)
+        {
+            string sql = "SELECT SUM(SALARIO) AS SUMASALARIAL, " +
+                "AVG(SALARIO) AS MEDIASALARIAL, " +
+                "MIN(SALARIO) AS MINIMOSALARIO, OFICIO " +
+                "FROM EMP GROUP BY OFICIO HAVING OFICIO = @oficio";
+            SqlParameter ofparam = new SqlParameter("@oficio", oficio);
+            this.com.Parameters.Add(ofparam);
+
+            this.com.CommandType = System.Data.CommandType.Text;
+            this.com.CommandText = sql;
+            this.cn.Open();
+
+            this.reader = this.com.ExecuteReader();
+
+            int sumasalarial = int.Parse(this.reader["SUMASALARIAL"].ToString());
+            int mediasalarial = int.Parse(this.reader["MEDIASALARIAL"].ToString());
+            int minimosalario = int.Parse(this.reader["MINIMOSALARIO"].ToString());
+
+            DatosEmpleadosOficio datos = new DatosEmpleadosOficio();
+            datos.SumaSalarial = sumasalarial;
+            datos.MediaSalarial = mediasalarial;
+            datos.MinimoSalario = minimosalario;
+
+            this.reader.Close();
+            this.com.Parameters.Clear();
+            this.cn.Close();
+
+            return datos;
+        }
+
     }
 }

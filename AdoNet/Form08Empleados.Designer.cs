@@ -36,6 +36,9 @@
             txtIncremento = new TextBox();
             btnIncrementar = new Button();
             lblSuma = new Label();
+            lblMedia = new Label();
+            lblMinimo = new Label();
+            btnDatos = new Button();
             SuspendLayout();
             // 
             // label1
@@ -105,17 +108,48 @@
             // lblSuma
             // 
             lblSuma.AutoSize = true;
-            lblSuma.Location = new Point(192, 279);
+            lblSuma.Location = new Point(366, 142);
             lblSuma.Name = "lblSuma";
             lblSuma.Size = new Size(128, 15);
             lblSuma.TabIndex = 7;
             lblSuma.Text = "Suma salarial del oficio";
+            // 
+            // lblMedia
+            // 
+            lblMedia.AutoSize = true;
+            lblMedia.Location = new Point(366, 172);
+            lblMedia.Name = "lblMedia";
+            lblMedia.Size = new Size(79, 15);
+            lblMedia.TabIndex = 8;
+            lblMedia.Text = "Media salarial";
+            // 
+            // lblMinimo
+            // 
+            lblMinimo.AutoSize = true;
+            lblMinimo.Location = new Point(373, 206);
+            lblMinimo.Name = "lblMinimo";
+            lblMinimo.Size = new Size(86, 15);
+            lblMinimo.TabIndex = 9;
+            lblMinimo.Text = "Minimo salario";
+            // 
+            // btnDatos
+            // 
+            btnDatos.Location = new Point(368, 241);
+            btnDatos.Name = "btnDatos";
+            btnDatos.Size = new Size(75, 23);
+            btnDatos.TabIndex = 10;
+            btnDatos.Text = "datos";
+            btnDatos.UseVisualStyleBackColor = true;
+            btnDatos.Click += btnDatos_Click;
             // 
             // Form08Empleados
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(539, 347);
+            Controls.Add(btnDatos);
+            Controls.Add(lblMinimo);
+            Controls.Add(lblMedia);
             Controls.Add(lblSuma);
             Controls.Add(btnIncrementar);
             Controls.Add(txtIncremento);
@@ -140,5 +174,8 @@
         private TextBox txtIncremento;
         private Button btnIncrementar;
         private Label lblSuma;
+        private Label lblMedia;
+        private Label lblMinimo;
+        private Button btnDatos;
     }
 }

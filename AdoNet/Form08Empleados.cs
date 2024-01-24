@@ -62,18 +62,18 @@ namespace AdoNet
             List<Empleado> empleados = this.repo.GetEmpOficios(oficio);
             this.lstEmpleados.Items.Clear();
 
-            int sumaSalarial = 0;
+            //int sumaSalarial = 0;
             foreach (Empleado emp in empleados)
             {
-                int sal = int.Parse(emp.Salario.ToString());
+                //int sal = int.Parse(emp.Salario.ToString());
                 //int com = int.Parse(emp.Comision.ToString());
-                sumaSalarial += sal;
+                //sumaSalarial += sal;
 
                 this.lstEmpleados.Items.Add(emp.Apellido);
                 this.idsEmpleados.Add(emp.Id);
             }
 
-            this.lblSuma.Text = sumaSalarial.ToString();
+            //this.lblSuma.Text = sumaSalarial.ToString();
         }
 
         private void lstEmpleados_SelectedIndexChanged(object sender, EventArgs e)
@@ -90,6 +90,19 @@ namespace AdoNet
 
             this.lstOficios_SelectedIndexChanged(sender, e);
             MessageBox.Show("Se han acutalizado " + actualizados.ToString() + " empleados.");
+        }
+
+        private void btnDatos_Click(object sender, EventArgs e)
+        {
+            int incremento = int.Parse(this.txtIncremento.Text);
+            string oficio = this.lstOficios.SelectedItem.ToString();
+            int actualizados = this.repo.AumentarSalario(incremento, oficio);
+
+            DatosEmpleadosOficio datos = this.repo.GetDatosEmpleadosOficio(oficio);
+
+            this.lblSuma.Text = datos.SumaSalarial.ToString();
+            this.lblMedia.Text = datos.MediaSalarial.ToString();
+            this.lblMinimo.Text = datos.MinimoSalario.ToString();
         }
     }
 }
