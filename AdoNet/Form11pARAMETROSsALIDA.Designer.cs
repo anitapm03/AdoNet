@@ -44,7 +44,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(20, 11);
+            label1.Location = new Point(20, 26);
             label1.Name = "label1";
             label1.Size = new Size(88, 15);
             label1.TabIndex = 0;
@@ -53,19 +53,20 @@
             // cmbDeptos
             // 
             cmbDeptos.FormattingEnabled = true;
-            cmbDeptos.Location = new Point(23, 44);
+            cmbDeptos.Location = new Point(20, 44);
             cmbDeptos.Name = "cmbDeptos";
-            cmbDeptos.Size = new Size(121, 23);
+            cmbDeptos.Size = new Size(124, 23);
             cmbDeptos.TabIndex = 1;
             // 
             // btnMostrarDatos
             // 
-            btnMostrarDatos.Location = new Point(25, 73);
+            btnMostrarDatos.Location = new Point(20, 73);
             btnMostrarDatos.Name = "btnMostrarDatos";
-            btnMostrarDatos.Size = new Size(119, 23);
+            btnMostrarDatos.Size = new Size(124, 23);
             btnMostrarDatos.TabIndex = 2;
             btnMostrarDatos.Text = "Mostrar datos";
             btnMostrarDatos.UseVisualStyleBackColor = true;
+            btnMostrarDatos.Click += btnMostrarDatos_Click;
             // 
             // label2
             // 
