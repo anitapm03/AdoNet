@@ -1,4 +1,5 @@
-﻿using AdoNet.Models.ResumenEmpleados;
+﻿using AdoNet.Helpers;
+using AdoNet.Models.ResumenEmpleados;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,7 +18,7 @@ namespace AdoNet.Repositories
 
         public RepositoryParametrosSalida() 
         {
-            string connectionString = "Data Source=LOCALHOST\\SQLEXPRESS;Initial Catalog=HOSPITAL;Persist Security Info=True;User ID=SA;Password=MCSD2023";
+            string connectionString = HelperConfiguration.GetConnectionString();
             this.cn = new SqlConnection(connectionString);
             this.com = new SqlCommand();
             this.com.Connection = this.cn;
